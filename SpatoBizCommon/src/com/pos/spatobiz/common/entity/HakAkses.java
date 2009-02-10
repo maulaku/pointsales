@@ -22,10 +22,10 @@ import java.io.Serializable;
  *
  * @author echo
  */
-public class HakAkses implements Serializable{
+public class HakAkses implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    
-
+    public HakAkses() {
+    }
 }
