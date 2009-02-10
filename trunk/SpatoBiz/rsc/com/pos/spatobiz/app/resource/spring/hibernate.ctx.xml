@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <context:annotation-config/>
+    <context:property-placeholder location="classpath:com/pos/spatobiz/app/resource/jdbc/connection.properties"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" id="sessionFactory">
+        <property name="configLocation" value="classpath:com/pos/spatobiz/app/resource/hibernate/hibernate.cfg.xml"/>
+        <property name="hibernateProperties">
+            <props merge="true">
+                <prop key="hibernate.connection.url">${jdbc.url}</prop>
+                <prop key="hibernate.connection.username">${jdbc.username}</prop>
+                <prop key="hibernate.connection.password">${jdbc.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.orm.hibernate3.HibernateTransactionManager" id="transactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="com.pos.spatobiz.app.dao.PemasokDaoImpl" id="pemasokDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean class="com.pos.spatobiz.app.dao.KaryawanDaoImpl" id="karyawanDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+</beans>
