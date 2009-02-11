@@ -22,14 +22,34 @@
                 <clean-target>clean</clean-target>
                 <id>jar</id>
             </reference>
+            <reference>
+                <foreign-project>echo-desktop</foreign-project>
+                <artifact-type>jar</artifact-type>
+                <script>build.xml</script>
+                <target>jar</target>
+                <clean-target>clean</clean-target>
+                <id>jar</id>
+            </reference>
         </references>
         <spring-data xmlns="http://www.netbeans.org/ns/spring-data/1">
             <config-files>
-                <config-file>rsc/com/pos/spatobiz/app/resource/spring.ctx.xml</config-file>
-                <config-file>rsc/com/pos/spatobiz/app/resource/hibernate.ctx.xml</config-file>
-                <config-file>rsc/com/pos/spatobiz/app/resource/spring/message.xml</config-file>
+                <config-file>rsc/com/pos/spatobiz/app/resource/spring/application.ctx.xml</config-file>
+                <config-file>rsc/com/pos/spatobiz/app/resource/spring/hibernate.ctx.xml</config-file>
+                <config-file>rsc/com/pos/spatobiz/app/resource/spring/message.ctx.xml</config-file>
+                <config-file>rsc/com/pos/spatobiz/app/resource/spring/panel.ctx.xml</config-file>
+                <config-file>rsc/com/pos/spatobiz/app/resource/spring/spring.ctx.xml</config-file>
+                <config-file>rsc/com/pos/spatobiz/app/resource/spring/button.ctx.xml</config-file>
             </config-files>
-            <config-file-groups/>
+            <config-file-groups>
+                <config-file-group name="all">
+                    <config-file>rsc/com/pos/spatobiz/app/resource/spring/application.ctx.xml</config-file>
+                    <config-file>rsc/com/pos/spatobiz/app/resource/spring/hibernate.ctx.xml</config-file>
+                    <config-file>rsc/com/pos/spatobiz/app/resource/spring/message.ctx.xml</config-file>
+                    <config-file>rsc/com/pos/spatobiz/app/resource/spring/panel.ctx.xml</config-file>
+                    <config-file>rsc/com/pos/spatobiz/app/resource/spring/spring.ctx.xml</config-file>
+                    <config-file>rsc/com/pos/spatobiz/app/resource/spring/button.ctx.xml</config-file>
+                </config-file-group>
+            </config-file-groups>
         </spring-data>
     </configuration>
 </project>

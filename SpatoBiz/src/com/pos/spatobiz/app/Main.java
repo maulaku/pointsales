@@ -17,9 +17,13 @@
 package com.pos.spatobiz.app;
 
 import com.pos.spatobiz.app.util.SpringUtilities;
-import com.pos.spatobiz.app.view.Application;
-import com.pos.spatobiz.common.error.SpatoBizException;
-import javax.swing.SwingUtilities;
+import echo.gokil.desktop.application.Application;
+import echo.gokil.desktop.util.DesktopManager;
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics2D;
+import java.awt.SplashScreen;
+import org.springframework.context.ApplicationContext;
 
 /**
  *
@@ -30,14 +34,16 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SpatoBizException {
-        // TODO code application logic here
-        SwingUtilities.invokeLater(new Runnable() {
-
-            public void run() {
-                Application application = (Application) SpringUtilities.getApplicationContext().getBean("application");
-                application.setVisible(true);
-            }
-        });
+    public static void main(String[] args) {
+        // change bright color
+        DesktopManager.setBrightColor(new Color(141, 223, 0));
+        // change dark color
+        DesktopManager.setDarkColor(new Color(32, 52, 0));
+        // get ApplicationContext
+        ApplicationContext applicationContext = SpringUtilities.getApplicationContext();
+        // get Application
+        Application application = (Application) applicationContext.getBean("application");
+        // start Application
+        DesktopManager.startApplication(application);
     }
 }

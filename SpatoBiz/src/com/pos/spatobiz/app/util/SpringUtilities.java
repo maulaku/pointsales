@@ -16,6 +16,9 @@
  */
 package com.pos.spatobiz.app.util;
 
+import com.pos.spatobiz.common.dao.KaryawanDao;
+import com.pos.spatobiz.common.dao.PelangganDao;
+import com.pos.spatobiz.common.dao.PemasokDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -32,5 +35,17 @@ public class SpringUtilities {
             applicationContext = new ClassPathXmlApplicationContext("com/pos/spatobiz/app/resource/spring/spring.ctx.xml");
         }
         return applicationContext;
+    }
+
+    public KaryawanDao getKaryawanDao() {
+        return (KaryawanDao) getApplicationContext().getBean("karyawanDao");
+    }
+
+    public PelangganDao getPelangganDao() {
+        return (PelangganDao) getApplicationContext().getBean("pelangganDao");
+    }
+
+    public PemasokDao getPemasokDao() {
+        return (PemasokDao) getApplicationContext().getBean("pemasokDao");
     }
 }

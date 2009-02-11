@@ -6,10 +6,14 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
     
     <context:annotation-config/>
-    <import resource="message.ctx.xml"/>
-    <import resource="hibernate.ctx.xml"/>
-    <import resource="panel.ctx.xml"/>
-    <import resource="button.ctx.xml"/>
-    <import resource="application.ctx.xml"/>
+    
+    <bean class="com.pos.spatobiz.app.view.desktop.GambarAbstract" id="gambarAbstract">
+        <property name="home" value="true"/>
+        <property name="uniqueName" value="gambarAbstract"/>
+    </bean>
+
+    <bean class="com.pos.spatobiz.app.view.karyawan.MenuKaryawan" id="menuKaryawan">
+        <property name="uniqueName" value="menuKaryawan"/>
+    </bean>
 
 </beans>

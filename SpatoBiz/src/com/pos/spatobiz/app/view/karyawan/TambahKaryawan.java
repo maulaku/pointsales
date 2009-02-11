@@ -14,45 +14,30 @@
  *  limitations under the License.
  *  under the License.
  */
+package com.pos.spatobiz.app.view.karyawan;
 
-/*
- * ButtonCrud.java
- *
- * Created on 10 Feb 09, 11:42:36
- */
-package com.pos.spatobiz.app.view;
-
+import echo.gokil.desktop.swing.Panel;
+import java.util.Locale;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 /**
  *
  * @author echo
  */
-public class ButtonCrud extends javax.swing.JPanel {
+public class TambahKaryawan extends Panel implements ApplicationContextAware, InitializingBean {
 
     private static final long serialVersionUID = 1L;
 
-    /** Creates new form ButtonCrud */
-    public ButtonCrud() {
+    private ApplicationContext applicationContext;
+
+    /** Creates new form TambahKaryawan */
+    public TambahKaryawan() {
         initComponents();
-    }
-
-    public JButton getButtonHapus() {
-        return buttonHapus;
-    }
-
-    public JButton getButtonSegarkan() {
-        return buttonSegarkan;
-    }
-
-    public JButton getButtonTambah() {
-        return buttonTambah;
-    }
-
-    public JButton getButtonUbah() {
-        return buttonUbah;
     }
 
     /** This method is called from within the constructor to
@@ -64,29 +49,25 @@ public class ButtonCrud extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonTambah = new JButton();
-        buttonUbah = new JButton();
-        buttonHapus = new JButton();
-        buttonSegarkan = new JButton();
-
-        buttonTambah.setText("Tambah");
-        add(buttonTambah);
-
-        buttonUbah.setText("Ubah");
-        add(buttonUbah);
-
-        buttonHapus.setText("Hapus");
-        add(buttonHapus);
-
-        buttonSegarkan.setText("Segarkan");
-        add(buttonSegarkan);
+        GroupLayout layout = new GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 657, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 407, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 
+    public void afterPropertiesSet() throws Exception {
+        setTitle(applicationContext.getMessage("tambahkaryawan.title", null, Locale.getDefault()));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected JButton buttonHapus;
-    protected JButton buttonSegarkan;
-    protected JButton buttonTambah;
-    protected JButton buttonUbah;
     // End of variables declaration//GEN-END:variables
 }
