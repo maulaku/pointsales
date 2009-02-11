@@ -18,13 +18,10 @@ package com.pos.spatobiz.app.view.karyawan;
 
 import com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanAction;
 import com.pos.spatobiz.app.view.widget.BigButton;
-import com.pos.spatobiz.app.view.widget.ImageChooser;
 import echo.gokil.desktop.swing.Panel;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.util.Locale;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
@@ -81,6 +78,7 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
         buttonDataKaryawan = new BigButton();
         buttonTambahKaryawan = new BigButton();
         buttonEditKaryawan = new BigButton();
+        buttonHapusKaryawan = new BigButton();
 
         setLayout(new GridBagLayout());
 
@@ -94,6 +92,9 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
 
         buttonEditKaryawan.setText("Ubah Karyawan");
         add(buttonEditKaryawan, new GridBagConstraints());
+
+        buttonHapusKaryawan.setText("Hapus Karyawan");
+        add(buttonHapusKaryawan, new GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -106,6 +107,7 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected BigButton buttonDataKaryawan;
     protected BigButton buttonEditKaryawan;
+    protected BigButton buttonHapusKaryawan;
     protected BigButton buttonTambahKaryawan;
     // End of variables declaration//GEN-END:variables
 }
