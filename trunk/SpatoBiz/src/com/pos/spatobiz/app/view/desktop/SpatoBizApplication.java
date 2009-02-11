@@ -18,7 +18,9 @@ package com.pos.spatobiz.app.view.desktop;
 
 import echo.gokil.desktop.application.Application;
 import echo.gokil.desktop.util.DesktopUtilities;
+import java.awt.Toolkit;
 import java.util.Locale;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -39,8 +41,11 @@ public class SpatoBizApplication extends Application implements ApplicationConte
      */
     public SpatoBizApplication() {
         super();
-        setSize(800, 600);
+        setUndecorated(true);
+        setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setLocationRelativeTo(null);
+        setAlwaysOnTop(true);
+        setLocation(0, 0);
     }
 
     @Override

@@ -21,6 +21,9 @@
 
     <bean class="com.pos.spatobiz.app.view.karyawan.TambahKaryawan" id="tambahKaryawan">
         <property name="uniqueName" value="tambahKaryawan"/>
+        <property name="tambahKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.TambahKaryawanController"/>
+        </property>
     </bean>
 
 </beans>

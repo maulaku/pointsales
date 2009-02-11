@@ -16,22 +16,28 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
-import com.pos.spatobiz.app.view.widget.BigButton;
+import com.pos.spatobiz.app.controller.karyawan.TambahKaryawanController;
 import com.pos.spatobiz.app.view.widget.DateBox;
-import com.pos.spatobiz.app.view.widget.ScrollPane;
+import com.pos.spatobiz.app.view.widget.ImageChooser;
+import com.pos.spatobiz.app.view.widget.RedLabel;
 import com.pos.spatobiz.app.view.widget.TextBoxTransfer;
 import com.pos.spatobiz.app.view.widget.WhiteLabel;
 import com.pos.spatobiz.app.view.widget.WhiteTextArea;
+import com.pos.spatobiz.common.entity.JenisKelamin;
+import com.pos.spatobiz.common.entity.Karyawan;
+import com.pos.spatobiz.common.error.SpatoBizException;
+import echo.gokil.desktop.swing.Button;
 import echo.gokil.desktop.swing.Panel;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JRadioButton;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.text.DateFormatter;
@@ -51,9 +57,60 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
 
     private ApplicationContext applicationContext;
 
+    private TambahKaryawanController tambahKaryawanController;
+
     /** Creates new form TambahKaryawan */
     public TambahKaryawan() {
         initComponents();
+    }
+
+    public void setTambahKaryawanController(TambahKaryawanController tambahKaryawanController) {
+        this.tambahKaryawanController = tambahKaryawanController;
+        buttonTambah.addActionListener(tambahKaryawanController);
+    }
+
+    public Karyawan getKaryawan() throws SpatoBizException {
+        if (textKode.getText().isEmpty()) {
+            errorKode.setText("");
+            throw new SpatoBizException();
+        }
+        if (textNama.getText().isEmpty()) {
+        }
+
+        Karyawan karyawan = new Karyawan();
+        karyawan.setAlamat(textAlamat.getText());
+        karyawan.setEmail(textEmail.getText());
+        if (radioPria.isSelected()) {
+            karyawan.setJenisKelamin(JenisKelamin.Pria);
+        } else {
+            karyawan.setJenisKelamin(JenisKelamin.Wanita);
+        }
+        karyawan.setKode(textKode.getText());
+        karyawan.setNama(textNama.getText());
+        karyawan.setPhoto(imageChooser.getImage());
+        karyawan.setTanggalLahir((Date) textTanggalLahir.getValue());
+        karyawan.setTelepon(textTelepon.getText());
+
+        return karyawan;
+    }
+
+    @Override
+    public void onOpen() throws Exception {
+        errorAlamat.setText("");
+        errorEmail.setText("");
+        errorKode.setText("");
+        errorNama.setText("");
+        errorTanggalLahir.setText("");
+        errorTelepon.setText("");
+
+        textAlamat.setText("");
+        textEmail.setText("");
+        textKode.setText("");
+        textNama.setText("");
+        textTanggalLahir.setValue(new Date());
+        textTelepon.setText("");
+
+        imageChooser.setImage(null);
     }
 
     /** This method is called from within the constructor to
@@ -65,35 +122,90 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        whiteLabel1 = new WhiteLabel();
-        whiteLabel2 = new WhiteLabel();
-        whiteLabel3 = new WhiteLabel();
-        whiteLabel4 = new WhiteLabel();
-        textBoxTransfer1 = new TextBoxTransfer();
-        textBoxTransfer2 = new TextBoxTransfer();
-        dateBox1 = new DateBox();
-        whiteTextArea1 = new WhiteTextArea();
+        jeniskelamin = new ButtonGroup();
+        labelKode = new WhiteLabel();
+        labelNama = new WhiteLabel();
+        labelTanggalLahir = new WhiteLabel();
+        labelAlamat = new WhiteLabel();
+        textKode = new TextBoxTransfer();
+        textNama = new TextBoxTransfer();
+        textTanggalLahir = new DateBox();
+        textAlamat = new WhiteTextArea();
+        errorKode = new RedLabel();
+        errorNama = new RedLabel();
+        errorTanggalLahir = new RedLabel();
+        errorAlamat = new RedLabel();
+        textTelepon = new TextBoxTransfer();
+        labelTelepon = new WhiteLabel();
+        labelEmail = new WhiteLabel();
+        labelJenisKelamin = new WhiteLabel();
+        labelPhoto = new WhiteLabel();
+        textEmail = new TextBoxTransfer();
+        radioPria = new JRadioButton();
+        radioWanita = new JRadioButton();
+        errorTelepon = new RedLabel();
+        errorEmail = new RedLabel();
+        imageChooser = new ImageChooser();
+        buttonBatal = new Button();
+        buttonTambah = new Button();
 
         setBackground(new Color(0, 0, 0));
 
-        whiteLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
-        whiteLabel1.setText("Kode :");
+        labelKode.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelKode.setText("Kode :");
 
-        whiteLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
-        whiteLabel2.setText("Nama :");
+        labelNama.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelNama.setText("Nama :");
 
-        whiteLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
-        whiteLabel3.setText("Tanggal Lahir :");
+        labelTanggalLahir.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelTanggalLahir.setText("Tanggal Lahir :");
 
-        whiteLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
-        whiteLabel4.setText("Alamat :");
+        labelAlamat.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelAlamat.setText("Alamat :");
 
-        textBoxTransfer1.setText("textBoxTransfer1");
+        textTanggalLahir.setFormatterFactory(new DefaultFormatterFactory(new DateFormatter(DateFormat.getDateInstance(DateFormat.LONG))));
+        textTanggalLahir.setPreferredSize(new Dimension(120, 24));
+        textTanggalLahir.setValue(new Date());
 
-        textBoxTransfer2.setText("textBoxTransfer2");
+        errorKode.setText("error kode");
 
-        dateBox1.setFormatterFactory(new DefaultFormatterFactory(new DateFormatter(DateFormat.getDateInstance(DateFormat.LONG))));
-        dateBox1.setValue(new Date());
+        errorNama.setText("error nama");
+
+        errorTanggalLahir.setText("error tanggal lahir");
+
+        errorAlamat.setText("error alamat");
+
+        labelTelepon.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelTelepon.setText("Telepon :");
+
+        labelEmail.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelEmail.setText("Email :");
+
+        labelJenisKelamin.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelJenisKelamin.setText("Jenis Kelamin :");
+
+        labelPhoto.setHorizontalAlignment(SwingConstants.RIGHT);
+        labelPhoto.setText("Photo :");
+
+        jeniskelamin.add(radioPria);
+        radioPria.setFont(new Font("Tahoma", 1, 11));
+        radioPria.setForeground(new Color(255, 255, 255));
+        radioPria.setText("Pria");
+        radioPria.setOpaque(false);
+
+        jeniskelamin.add(radioWanita);
+        radioWanita.setFont(new Font("Tahoma", 1, 11));
+        radioWanita.setForeground(new Color(255, 255, 255));
+        radioWanita.setText("Wanita");
+        radioWanita.setOpaque(false);
+
+        errorTelepon.setText("error telepon");
+
+        errorEmail.setText("error email");
+
+        buttonBatal.setText("Batal");
+
+        buttonTambah.setText("Tambah");
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -101,39 +213,97 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-                    .addComponent(whiteLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(whiteLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(whiteLabel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(whiteLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(whiteTextArea1, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                    .addComponent(textBoxTransfer2, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                    .addComponent(dateBox1, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-                    .addComponent(textBoxTransfer1, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
-                .addGap(160, 160, 160))
+                    .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+                                    .addComponent(labelTelepon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelTanggalLahir, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelAlamat, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelNama, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelKode, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                                    .addComponent(textTelepon, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                                    .addComponent(textAlamat, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(textNama, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                                    .addComponent(textTanggalLahir, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                                    .addComponent(textKode, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)))
+                            .addGroup(Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
+                                    .addComponent(labelPhoto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelJenisKelamin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelEmail, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(radioPria)
+                                        .addPreferredGap(ComponentPlacement.UNRELATED)
+                                        .addComponent(radioWanita))
+                                    .addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                                    .addComponent(imageChooser, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                            .addComponent(errorKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorAlamat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(errorEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(buttonTambah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(buttonBatal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(whiteLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textBoxTransfer1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(whiteLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textBoxTransfer2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(whiteLabel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dateBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addComponent(whiteLabel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(whiteTextArea1, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(203, Short.MAX_VALUE))
+                    .addComponent(labelAlamat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textAlamat, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorAlamat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(textTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(labelEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(errorEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(labelJenisKelamin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(radioPria)
+                    .addComponent(radioWanita))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(labelPhoto, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(imageChooser, GroupLayout.PREFERRED_SIZE, 189, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(buttonBatal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonTambah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,13 +315,31 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         setTitle(applicationContext.getMessage("tambahkaryawan.title", null, Locale.getDefault()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected DateBox dateBox1;
-    protected TextBoxTransfer textBoxTransfer1;
-    protected TextBoxTransfer textBoxTransfer2;
-    protected WhiteLabel whiteLabel1;
-    protected WhiteLabel whiteLabel2;
-    protected WhiteLabel whiteLabel3;
-    protected WhiteLabel whiteLabel4;
-    protected WhiteTextArea whiteTextArea1;
+    protected Button buttonBatal;
+    protected Button buttonTambah;
+    protected RedLabel errorAlamat;
+    protected RedLabel errorEmail;
+    protected RedLabel errorKode;
+    protected RedLabel errorNama;
+    protected RedLabel errorTanggalLahir;
+    protected RedLabel errorTelepon;
+    protected ImageChooser imageChooser;
+    protected ButtonGroup jeniskelamin;
+    protected WhiteLabel labelAlamat;
+    protected WhiteLabel labelEmail;
+    protected WhiteLabel labelJenisKelamin;
+    protected WhiteLabel labelKode;
+    protected WhiteLabel labelNama;
+    protected WhiteLabel labelPhoto;
+    protected WhiteLabel labelTanggalLahir;
+    protected WhiteLabel labelTelepon;
+    protected JRadioButton radioPria;
+    protected JRadioButton radioWanita;
+    protected WhiteTextArea textAlamat;
+    protected TextBoxTransfer textEmail;
+    protected TextBoxTransfer textKode;
+    protected TextBoxTransfer textNama;
+    protected DateBox textTanggalLahir;
+    protected TextBoxTransfer textTelepon;
     // End of variables declaration//GEN-END:variables
 }
