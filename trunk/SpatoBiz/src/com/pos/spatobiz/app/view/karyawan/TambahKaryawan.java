@@ -71,8 +71,8 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
 
     public Karyawan getKaryawan() throws SpatoBizException {
         if (textKode.getText().isEmpty()) {
-            errorKode.setText("");
-            throw new SpatoBizException();
+            errorKode.setText("kode tidak boleh kosong");
+            throw new SpatoBizException("kode tidak boleh kosong");
         }
         if (textNama.getText().isEmpty()) {
         }
