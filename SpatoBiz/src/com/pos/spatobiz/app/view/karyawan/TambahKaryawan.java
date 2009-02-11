@@ -16,10 +16,15 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
+import com.pos.spatobiz.app.view.widget.BigButton;
+import com.pos.spatobiz.app.view.widget.TextBoxTransfer;
+import com.pos.spatobiz.app.view.widget.WhiteLabel;
 import echo.gokil.desktop.swing.Panel;
 import java.util.Locale;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -49,15 +54,46 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        textBoxTransfer1 = new TextBoxTransfer();
+        textBoxTransfer2 = new TextBoxTransfer();
+        whiteLabel1 = new WhiteLabel();
+        whiteLabel2 = new WhiteLabel();
+
+        textBoxTransfer1.setText("textBoxTransfer1");
+
+        textBoxTransfer2.setText("textBoxTransfer2");
+
+        whiteLabel1.setText("whiteLabel1");
+
+        whiteLabel2.setText("whiteLabel2");
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 657, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                    .addComponent(whiteLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(whiteLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING, false)
+                    .addComponent(textBoxTransfer2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textBoxTransfer1, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 407, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(textBoxTransfer1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(whiteLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(textBoxTransfer2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(whiteLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(337, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -69,5 +105,9 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         setTitle(applicationContext.getMessage("tambahkaryawan.title", null, Locale.getDefault()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected TextBoxTransfer textBoxTransfer1;
+    protected TextBoxTransfer textBoxTransfer2;
+    protected WhiteLabel whiteLabel1;
+    protected WhiteLabel whiteLabel2;
     // End of variables declaration//GEN-END:variables
 }

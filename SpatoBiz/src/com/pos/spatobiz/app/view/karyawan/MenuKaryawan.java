@@ -16,10 +16,16 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
+import com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanAction;
+import com.pos.spatobiz.app.view.widget.BigButton;
+import com.pos.spatobiz.app.view.widget.ImageChooser;
 import echo.gokil.desktop.swing.Panel;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.Locale;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -35,9 +41,32 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
 
     private ApplicationContext applicationContext;
 
+    private TampilkanTambahKaryawanAction tampilkanTambahKaryawanAction;
+
     /** Creates new form MenuKaryawan */
     public MenuKaryawan() {
         initComponents();
+    }
+
+    public TampilkanTambahKaryawanAction getTampilkanTambahKaryawanAction() {
+        return tampilkanTambahKaryawanAction;
+    }
+
+    public void setTampilkanTambahKaryawanAction(TampilkanTambahKaryawanAction tampilkanTambahKaryawanAction) {
+        this.tampilkanTambahKaryawanAction = tampilkanTambahKaryawanAction;
+        getButtonTambahKaryawan().addActionListener(tampilkanTambahKaryawanAction);
+    }
+
+    public BigButton getButtonDataKaryawan() {
+        return buttonDataKaryawan;
+    }
+
+    public BigButton getButtonEditKaryawan() {
+        return buttonEditKaryawan;
+    }
+
+    public BigButton getButtonTambahKaryawan() {
+        return buttonTambahKaryawan;
     }
 
     /** This method is called from within the constructor to
@@ -49,16 +78,22 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        GroupLayout layout = new GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        buttonDataKaryawan = new BigButton();
+        buttonTambahKaryawan = new BigButton();
+        buttonEditKaryawan = new BigButton();
+
+        setLayout(new GridBagLayout());
+
+        buttonDataKaryawan.setIcon(new ImageIcon(getClass().getResource("/com/pos/spatobiz/app/resource/image/karyawan/karyawan.png"))); // NOI18N
+        buttonDataKaryawan.setText("Data Karyawan");
+        add(buttonDataKaryawan, new GridBagConstraints());
+
+        buttonTambahKaryawan.setIcon(new ImageIcon(getClass().getResource("/com/pos/spatobiz/app/resource/image/karyawan/tambah.png"))); // NOI18N
+        buttonTambahKaryawan.setText("Tambah Karyawan");
+        add(buttonTambahKaryawan, new GridBagConstraints());
+
+        buttonEditKaryawan.setText("Ubah Karyawan");
+        add(buttonEditKaryawan, new GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
@@ -69,5 +104,8 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
         setTitle(applicationContext.getMessage("menukaryawan.title", null, Locale.getDefault()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected BigButton buttonDataKaryawan;
+    protected BigButton buttonEditKaryawan;
+    protected BigButton buttonTambahKaryawan;
     // End of variables declaration//GEN-END:variables
 }
