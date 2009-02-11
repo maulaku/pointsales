@@ -17,14 +17,25 @@
 package com.pos.spatobiz.app.view.karyawan;
 
 import com.pos.spatobiz.app.view.widget.BigButton;
+import com.pos.spatobiz.app.view.widget.DateBox;
+import com.pos.spatobiz.app.view.widget.ScrollPane;
 import com.pos.spatobiz.app.view.widget.TextBoxTransfer;
 import com.pos.spatobiz.app.view.widget.WhiteLabel;
+import com.pos.spatobiz.app.view.widget.WhiteTextArea;
 import echo.gokil.desktop.swing.Panel;
+import java.awt.Color;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Locale;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.text.DateFormatter;
+import javax.swing.text.DefaultFormatterFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -54,18 +65,35 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textBoxTransfer1 = new TextBoxTransfer();
-        textBoxTransfer2 = new TextBoxTransfer();
         whiteLabel1 = new WhiteLabel();
         whiteLabel2 = new WhiteLabel();
+        whiteLabel3 = new WhiteLabel();
+        whiteLabel4 = new WhiteLabel();
+        textBoxTransfer1 = new TextBoxTransfer();
+        textBoxTransfer2 = new TextBoxTransfer();
+        dateBox1 = new DateBox();
+        whiteTextArea1 = new WhiteTextArea();
+
+        setBackground(new Color(0, 0, 0));
+
+        whiteLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
+        whiteLabel1.setText("Kode :");
+
+        whiteLabel2.setHorizontalAlignment(SwingConstants.RIGHT);
+        whiteLabel2.setText("Nama :");
+
+        whiteLabel3.setHorizontalAlignment(SwingConstants.RIGHT);
+        whiteLabel3.setText("Tanggal Lahir :");
+
+        whiteLabel4.setHorizontalAlignment(SwingConstants.RIGHT);
+        whiteLabel4.setText("Alamat :");
 
         textBoxTransfer1.setText("textBoxTransfer1");
 
         textBoxTransfer2.setText("textBoxTransfer2");
 
-        whiteLabel1.setText("whiteLabel1");
-
-        whiteLabel2.setText("whiteLabel2");
+        dateBox1.setFormatterFactory(new DefaultFormatterFactory(new DateFormatter(DateFormat.getDateInstance(DateFormat.LONG))));
+        dateBox1.setValue(new Date());
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -73,27 +101,39 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                    .addComponent(whiteLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(whiteLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING, false)
-                    .addComponent(textBoxTransfer2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textBoxTransfer1, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))
-                .addContainerGap(314, Short.MAX_VALUE))
+                    .addComponent(whiteLabel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(whiteLabel4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(whiteLabel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(whiteLabel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(whiteTextArea1, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(textBoxTransfer2, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(dateBox1, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(textBoxTransfer1, GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
+                .addGap(160, 160, 160))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(textBoxTransfer1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(whiteLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(whiteLabel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textBoxTransfer1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
-                    .addComponent(textBoxTransfer2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(whiteLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(337, Short.MAX_VALUE))
+                    .addComponent(whiteLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textBoxTransfer2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.BASELINE)
+                    .addComponent(whiteLabel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(Alignment.LEADING)
+                    .addComponent(whiteLabel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(whiteTextArea1, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -105,9 +145,13 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         setTitle(applicationContext.getMessage("tambahkaryawan.title", null, Locale.getDefault()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected DateBox dateBox1;
     protected TextBoxTransfer textBoxTransfer1;
     protected TextBoxTransfer textBoxTransfer2;
     protected WhiteLabel whiteLabel1;
     protected WhiteLabel whiteLabel2;
+    protected WhiteLabel whiteLabel3;
+    protected WhiteLabel whiteLabel4;
+    protected WhiteTextArea whiteTextArea1;
     // End of variables declaration//GEN-END:variables
 }

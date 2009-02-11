@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" noResource="true" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="0" green="0" red="0" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -17,17 +22,21 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="whiteLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="whiteLabel2" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="textBoxTransfer2" max="32767" attributes="1"/>
-                  <Component id="textBoxTransfer1" alignment="0" pref="261" max="32767" attributes="1"/>
+                  <Component id="whiteLabel3" alignment="0" max="32767" attributes="1"/>
+                  <Component id="whiteLabel4" alignment="0" max="32767" attributes="1"/>
+                  <Component id="whiteLabel2" alignment="0" max="32767" attributes="1"/>
+                  <Component id="whiteLabel1" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="314" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="whiteTextArea1" pref="395" max="32767" attributes="0"/>
+                  <Component id="textBoxTransfer2" alignment="0" pref="395" max="32767" attributes="2"/>
+                  <Component id="dateBox1" alignment="0" pref="395" max="32767" attributes="2"/>
+                  <Component id="textBoxTransfer1" alignment="0" pref="395" max="32767" attributes="2"/>
+              </Group>
+              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -36,20 +45,54 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="textBoxTransfer1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="whiteLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textBoxTransfer1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="textBoxTransfer2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="whiteLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textBoxTransfer2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="337" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="whiteLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dateBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="whiteLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="whiteTextArea1" min="-2" pref="88" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="203" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
+    <Component class="com.pos.spatobiz.app.view.widget.WhiteLabel" name="whiteLabel1">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Kode :"/>
+      </Properties>
+    </Component>
+    <Component class="com.pos.spatobiz.app.view.widget.WhiteLabel" name="whiteLabel2">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Nama :"/>
+      </Properties>
+    </Component>
+    <Component class="com.pos.spatobiz.app.view.widget.WhiteLabel" name="whiteLabel3">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Tanggal Lahir :"/>
+      </Properties>
+    </Component>
+    <Component class="com.pos.spatobiz.app.view.widget.WhiteLabel" name="whiteLabel4">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Alamat :"/>
+      </Properties>
+    </Component>
     <Component class="com.pos.spatobiz.app.view.widget.TextBoxTransfer" name="textBoxTransfer1">
       <Properties>
         <Property name="text" type="java.lang.String" value="textBoxTransfer1"/>
@@ -60,15 +103,17 @@
         <Property name="text" type="java.lang.String" value="textBoxTransfer2"/>
       </Properties>
     </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.WhiteLabel" name="whiteLabel1">
+    <Component class="com.pos.spatobiz.app.view.widget.DateBox" name="dateBox1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="whiteLabel1"/>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+          <Format subtype="3" type="1"/>
+        </Property>
+        <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new java.util.Date()" type="code"/>
+        </Property>
       </Properties>
     </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.WhiteLabel" name="whiteLabel2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="whiteLabel2"/>
-      </Properties>
+    <Component class="com.pos.spatobiz.app.view.widget.WhiteTextArea" name="whiteTextArea1">
     </Component>
   </SubComponents>
 </Form>
