@@ -14,6 +14,13 @@
 
     <bean class="com.pos.spatobiz.app.view.karyawan.MenuKaryawan" id="menuKaryawan">
         <property name="uniqueName" value="menuKaryawan"/>
+        <property name="tampilkanTambahKaryawanAction">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanAction"/>
+        </property>
+    </bean>
+
+    <bean class="com.pos.spatobiz.app.view.karyawan.TambahKaryawan" id="tambahKaryawan">
+        <property name="uniqueName" value="tambahKaryawan"/>
     </bean>
 
 </beans>
