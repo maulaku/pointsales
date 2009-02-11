@@ -21,6 +21,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -92,10 +94,14 @@ public class Karyawan implements Serializable {
     @Basic(fetch = FetchType.LAZY)
     private ImageIcon photo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "jeni_kelamin_karyawan")
+    private JenisKelamin jenisKelamin;
+
     public Karyawan() {
     }
 
-    public Karyawan(String kode, String nama, Date tanggalLahir, String alamat, String telepon, String email, ImageIcon photo) {
+    public Karyawan(String kode, String nama, Date tanggalLahir, String alamat, String telepon, String email, ImageIcon photo, JenisKelamin jenisKelamin) {
         this.kode = kode;
         this.nama = nama;
         this.tanggalLahir = tanggalLahir;
@@ -103,6 +109,15 @@ public class Karyawan implements Serializable {
         this.telepon = telepon;
         this.email = email;
         this.photo = photo;
+        this.jenisKelamin = jenisKelamin;
+    }
+
+    public JenisKelamin getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public void setJenisKelamin(JenisKelamin jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
     }
 
     public String getAlamat() {
@@ -202,20 +217,24 @@ public class Karyawan implements Serializable {
         if (this.photo != other.photo && (this.photo == null || !this.photo.equals(other.photo))) {
             return false;
         }
+        if (this.jenisKelamin != other.jenisKelamin) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 89 * hash + (this.kode != null ? this.kode.hashCode() : 0);
-        hash = 89 * hash + (this.nama != null ? this.nama.hashCode() : 0);
-        hash = 89 * hash + (this.tanggalLahir != null ? this.tanggalLahir.hashCode() : 0);
-        hash = 89 * hash + (this.alamat != null ? this.alamat.hashCode() : 0);
-        hash = 89 * hash + (this.telepon != null ? this.telepon.hashCode() : 0);
-        hash = 89 * hash + (this.email != null ? this.email.hashCode() : 0);
-        hash = 89 * hash + (this.photo != null ? this.photo.hashCode() : 0);
+        int hash = 3;
+        hash = 23 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 23 * hash + (this.kode != null ? this.kode.hashCode() : 0);
+        hash = 23 * hash + (this.nama != null ? this.nama.hashCode() : 0);
+        hash = 23 * hash + (this.tanggalLahir != null ? this.tanggalLahir.hashCode() : 0);
+        hash = 23 * hash + (this.alamat != null ? this.alamat.hashCode() : 0);
+        hash = 23 * hash + (this.telepon != null ? this.telepon.hashCode() : 0);
+        hash = 23 * hash + (this.email != null ? this.email.hashCode() : 0);
+        hash = 23 * hash + (this.photo != null ? this.photo.hashCode() : 0);
+        hash = 23 * hash + (this.jenisKelamin != null ? this.jenisKelamin.hashCode() : 0);
         return hash;
     }
 }

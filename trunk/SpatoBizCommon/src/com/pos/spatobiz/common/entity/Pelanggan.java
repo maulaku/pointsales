@@ -83,16 +83,27 @@ public class Pelanggan implements Serializable {
     @Column(name = "status_pelanggan")
     private StatusPelanggan statusPelanggan;
 
+    private JenisKelamin jenisKelamin;
+
     public Pelanggan() {
     }
 
-    public Pelanggan(String nama, Date tanggalLahir, String alamat, String telepon, String email, StatusPelanggan statusPelanggan) {
+    public Pelanggan(String nama, Date tanggalLahir, String alamat, String telepon, String email, StatusPelanggan statusPelanggan, JenisKelamin jenisKelamin) {
         this.nama = nama;
         this.tanggalLahir = tanggalLahir;
         this.alamat = alamat;
         this.telepon = telepon;
         this.email = email;
         this.statusPelanggan = statusPelanggan;
+        this.jenisKelamin = jenisKelamin;
+    }
+
+    public JenisKelamin getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public void setJenisKelamin(JenisKelamin jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
     }
 
     public String getAlamat() {
@@ -181,19 +192,23 @@ public class Pelanggan implements Serializable {
         if (this.statusPelanggan != other.statusPelanggan) {
             return false;
         }
+        if (this.jenisKelamin != other.jenisKelamin) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
-        hash = 89 * hash + (this.nama != null ? this.nama.hashCode() : 0);
-        hash = 89 * hash + (this.tanggalLahir != null ? this.tanggalLahir.hashCode() : 0);
-        hash = 89 * hash + (this.alamat != null ? this.alamat.hashCode() : 0);
-        hash = 89 * hash + (this.telepon != null ? this.telepon.hashCode() : 0);
-        hash = 89 * hash + (this.email != null ? this.email.hashCode() : 0);
-        hash = 89 * hash + (this.statusPelanggan != null ? this.statusPelanggan.hashCode() : 0);
+        int hash = 7;
+        hash = 61 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 61 * hash + (this.nama != null ? this.nama.hashCode() : 0);
+        hash = 61 * hash + (this.tanggalLahir != null ? this.tanggalLahir.hashCode() : 0);
+        hash = 61 * hash + (this.alamat != null ? this.alamat.hashCode() : 0);
+        hash = 61 * hash + (this.telepon != null ? this.telepon.hashCode() : 0);
+        hash = 61 * hash + (this.email != null ? this.email.hashCode() : 0);
+        hash = 61 * hash + (this.statusPelanggan != null ? this.statusPelanggan.hashCode() : 0);
+        hash = 61 * hash + (this.jenisKelamin != null ? this.jenisKelamin.hashCode() : 0);
         return hash;
     }
 
