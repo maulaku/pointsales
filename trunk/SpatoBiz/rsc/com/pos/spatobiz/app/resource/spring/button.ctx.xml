@@ -21,4 +21,11 @@
         <property name="uniqueName" value="tombolKaryawan"/>
     </bean>
 
+    <bean class="com.pos.spatobiz.app.view.pemasok.TombolPemasok" id="tombolPemasok">
+        <constructor-arg>
+            <bean class="com.pos.spatobiz.app.controller.pemasok.TombolPemasokController"/>
+        </constructor-arg>
+        <property name="uniqueName" value="tombolPemasok"/>
+    </bean>
+
 </beans>

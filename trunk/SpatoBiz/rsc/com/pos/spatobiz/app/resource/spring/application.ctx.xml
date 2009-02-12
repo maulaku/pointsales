@@ -16,6 +16,8 @@
                 <ref bean="tambahKaryawan"/>
                 <ref bean="ubahKaryawan"/>
                 <ref bean="hapusKaryawan"/>
+                <ref bean="menuPemasok"/>
+                <ref bean="tambahPemasok"/>
             </list>
         </property>
 
@@ -23,6 +25,7 @@
             <list value-type="echo.gokil.desktop.swing.Button">
                 <ref bean="tombolGambarAbstract"/>
                 <ref bean="tombolKaryawan"/>
+                <ref bean="tombolPemasok"/>
             </list>
         </property>
     </bean>
