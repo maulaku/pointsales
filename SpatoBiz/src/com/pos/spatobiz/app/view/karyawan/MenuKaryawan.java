@@ -16,7 +16,9 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
-import com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanAction;
+import com.pos.spatobiz.app.controller.karyawan.TampilkanHapusKaryawanController;
+import com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanController;
+import com.pos.spatobiz.app.controller.karyawan.TampilkanUbahKaryawanController;
 import com.pos.spatobiz.app.view.widget.BigButton;
 import echo.gokil.desktop.swing.Panel;
 import java.awt.GridBagConstraints;
@@ -38,20 +40,30 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
 
     private ApplicationContext applicationContext;
 
-    private TampilkanTambahKaryawanAction tampilkanTambahKaryawanAction;
+    private TampilkanTambahKaryawanController tampilkanTambahKaryawanAction;
+
+    private TampilkanUbahKaryawanController tampilkanUbahKaryawanController;
+
+    private TampilkanHapusKaryawanController tampilkanHapusKaryawanController;
 
     /** Creates new form MenuKaryawan */
     public MenuKaryawan() {
         initComponents();
     }
 
-    public TampilkanTambahKaryawanAction getTampilkanTambahKaryawanAction() {
-        return tampilkanTambahKaryawanAction;
+    public void setTampilkanHapusKaryawanController(TampilkanHapusKaryawanController tampilkanHapusKaryawanController) {
+        this.tampilkanHapusKaryawanController = tampilkanHapusKaryawanController;
+        buttonHapusKaryawan.addActionListener(tampilkanHapusKaryawanController);
     }
 
-    public void setTampilkanTambahKaryawanAction(TampilkanTambahKaryawanAction tampilkanTambahKaryawanAction) {
+    public void setTampilkanTambahKaryawanAction(TampilkanTambahKaryawanController tampilkanTambahKaryawanAction) {
         this.tampilkanTambahKaryawanAction = tampilkanTambahKaryawanAction;
         getButtonTambahKaryawan().addActionListener(tampilkanTambahKaryawanAction);
+    }
+
+    public void setTampilkanUbahKaryawanController(TampilkanUbahKaryawanController tampilkanUbahKaryawanController) {
+        this.tampilkanUbahKaryawanController = tampilkanUbahKaryawanController;
+        getButtonEditKaryawan().addActionListener(tampilkanUbahKaryawanController);
     }
 
     public BigButton getButtonDataKaryawan() {
@@ -90,6 +102,7 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
         buttonTambahKaryawan.setText("Tambah Karyawan");
         add(buttonTambahKaryawan, new GridBagConstraints());
 
+        buttonEditKaryawan.setIcon(new ImageIcon(getClass().getResource("/com/pos/spatobiz/app/resource/image/karyawan/karyawan.png"))); // NOI18N
         buttonEditKaryawan.setText("Ubah Karyawan");
         add(buttonEditKaryawan, new GridBagConstraints());
 

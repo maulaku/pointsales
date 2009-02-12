@@ -17,10 +17,9 @@
 package com.pos.spatobiz.app.controller.karyawan;
 
 import com.pos.spatobiz.app.util.SpringUtilities;
-import com.pos.spatobiz.app.view.karyawan.TambahKaryawan;
+import com.pos.spatobiz.app.view.karyawan.HapusKaryawan;
 import com.pos.spatobiz.common.dao.KaryawanDao;
 import com.pos.spatobiz.common.entity.Karyawan;
-import com.pos.spatobiz.common.error.SpatoBizException;
 import echo.gokil.desktop.util.DesktopManager;
 import echo.gokil.desktop.util.DesktopUtilities;
 import echo.gokil.desktop.worker.DesktopWorker;
@@ -31,15 +30,15 @@ import java.awt.event.ActionListener;
  *
  * @author echo
  */
-public class TambahKaryawanController implements ActionListener {
+public class CariHapusKaryawanController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-        new TambahKaryawanWorker(true).execute();
+        new CariWorker(true).execute();
     }
 
-    public class TambahKaryawanWorker extends DesktopWorker<Karyawan, Void> {
+    public class CariWorker extends DesktopWorker<Karyawan, Void> {
 
-        public TambahKaryawanWorker(boolean blockInput) {
+        public CariWorker(boolean blockInput) {
             super(blockInput);
         }
 
@@ -47,8 +46,8 @@ public class TambahKaryawanController implements ActionListener {
         public boolean beforeDone() {
             try {
                 Karyawan karyawan = get();
-                KaryawanDao karyawanDao = (KaryawanDao) SpringUtilities.getApplicationContext().getBean("karyawanDao");
-                karyawanDao.insertKaryawan(karyawan);
+                HapusKaryawan hapusKaryawan = (HapusKaryawan) DesktopManager.getPanel("hapusKaryawan");
+                hapusKaryawan.setKaryawan(karyawan);
                 return true;
             } catch (Exception e) {
                 DesktopUtilities.showErrorMessage(DesktopManager.getApplication(), "SpatoBiz 1.0", e.getMessage());
@@ -58,18 +57,15 @@ public class TambahKaryawanController implements ActionListener {
 
         @Override
         public void afterDone() {
-            DesktopUtilities.showInfoMessage(DesktopManager.getApplication(), "SpatoBiz 1.0", "Penambahan karyawan berhasil");
-            DesktopManager.getApplication().showChildPane("menuKaryawan");
+            DesktopUtilities.showInfoMessage(DesktopManager.getApplication(), "SpatoBiz 1.0", "Karyawan berhasil ditemukan");
         }
 
         @Override
         protected Karyawan doInBackground() throws Exception {
-            try {
-                TambahKaryawan tambahKaryawan = (TambahKaryawan) DesktopManager.getPanel("tambahKaryawan");
-                return tambahKaryawan.getKaryawan();
-            } catch (SpatoBizException sbe) {
-                throw new Exception(sbe.getMessage());
-            }
+            HapusKaryawan hapusKaryawan = (HapusKaryawan) DesktopManager.getPanel("hapusKaryawan");
+            KaryawanDao karyawanDao = SpringUtilities.getKaryawanDao();
+            Karyawan karyawan = karyawanDao.getKaryawan(hapusKaryawan.getTextKode().getText());
+            return karyawan;
         }
     }
 }

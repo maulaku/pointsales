@@ -15,7 +15,13 @@
     <bean class="com.pos.spatobiz.app.view.karyawan.MenuKaryawan" id="menuKaryawan">
         <property name="uniqueName" value="menuKaryawan"/>
         <property name="tampilkanTambahKaryawanAction">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanAction"/>
+            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanController"/>
+        </property>
+        <property name="tampilkanUbahKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanUbahKaryawanController"/>
+        </property>
+        <property name="tampilkanHapusKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanHapusKaryawanController"/>
         </property>
     </bean>
 
@@ -23,6 +29,29 @@
         <property name="uniqueName" value="tambahKaryawan"/>
         <property name="tambahKaryawanController">
             <bean class="com.pos.spatobiz.app.controller.karyawan.TambahKaryawanController"/>
+        </property>
+        <property name="batalTambahKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.BatalTambahKaryawanController"/>
+        </property>
+    </bean>
+
+    <bean class="com.pos.spatobiz.app.view.karyawan.UbahKaryawan" id="ubahKaryawan">
+        <property name="uniqueName" value="ubahKaryawan"/>
+        <property name="cariUbahKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.CariUbahKaryawanController"/>
+        </property>
+        <property name="batalUbahKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.BatalUbahKaryawanController"/>
+        </property>
+        <property name="ubahKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.UbahKaryawanController"/>
+        </property>
+    </bean>
+
+    <bean class="com.pos.spatobiz.app.view.karyawan.HapusKaryawan" id="hapusKaryawan">
+        <property name="uniqueName" value="hapusKaryawan"/>
+        <property name="cariHapusKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.CariHapusKaryawanController"/>
         </property>
     </bean>
 

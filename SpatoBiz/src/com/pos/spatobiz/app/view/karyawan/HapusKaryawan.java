@@ -16,11 +16,9 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
-import com.pos.spatobiz.app.controller.karyawan.BatalTambahKaryawanController;
-import com.pos.spatobiz.app.controller.karyawan.TambahKaryawanController;
+import com.pos.spatobiz.app.controller.karyawan.CariHapusKaryawanController;
 import com.pos.spatobiz.app.view.widget.DateBox;
 import com.pos.spatobiz.app.view.widget.ImageChooser;
-import com.pos.spatobiz.app.view.widget.RedLabel;
 import com.pos.spatobiz.app.view.widget.TextBoxTransfer;
 import com.pos.spatobiz.app.view.widget.WhiteLabel;
 import com.pos.spatobiz.app.view.widget.WhiteTextArea;
@@ -52,94 +50,55 @@ import org.springframework.context.ApplicationContextAware;
  *
  * @author echo
  */
-public class TambahKaryawan extends Panel implements ApplicationContextAware, InitializingBean {
+public class HapusKaryawan extends Panel implements ApplicationContextAware, InitializingBean {
 
     private static final long serialVersionUID = 1L;
 
     private ApplicationContext applicationContext;
 
-    private TambahKaryawanController tambahKaryawanController;
+    private Karyawan karyawan;
 
-    private BatalTambahKaryawanController batalTambahKaryawanController;
+    private CariHapusKaryawanController cariHapusKaryawanController;
 
     /** Creates new form TambahKaryawan */
-    public TambahKaryawan() {
+    public HapusKaryawan() {
         initComponents();
     }
 
-    public void setTambahKaryawanController(TambahKaryawanController tambahKaryawanController) {
-        this.tambahKaryawanController = tambahKaryawanController;
-        buttonTambah.addActionListener(tambahKaryawanController);
-    }
-
-    public void setBatalTambahKaryawanController(BatalTambahKaryawanController batalTambahKaryawanController) {
-        this.batalTambahKaryawanController = batalTambahKaryawanController;
-        buttonBatal.addActionListener(batalTambahKaryawanController);
+    public void setCariHapusKaryawanController(CariHapusKaryawanController cariHapusKaryawanController) {
+        this.cariHapusKaryawanController = cariHapusKaryawanController;
+        buttonCari.addActionListener(cariHapusKaryawanController);
     }
 
     public Karyawan getKaryawan() throws SpatoBizException {
-        boolean valid = true;
 
-        if (textKode.getText().isEmpty()) {
-            errorKode.setText("Kode tidak boleh kosong");
-            valid = false;
-        } else {
-            errorKode.setText("");
+        if (karyawan == null) {
+            throw new SpatoBizException("Silahkan tekan tombol cari dulu");
+        } else if (karyawan.getId() == null) {
+            throw new SpatoBizException("Silahkan tekan tombol cari dulu");
         }
-
-        if (textNama.getText().isEmpty()) {
-            errorNama.setText("Nama tidak boleh kosong");
-            valid = false;
-        } else {
-            errorNama.setText("");
-        }
-
-        if (textAlamat.getText().isEmpty()) {
-            errorAlamat.setText("Alamat tidak boleh kosong");
-            valid = false;
-        } else {
-            errorAlamat.setText("");
-        }
-
-        if (textEmail.getText().isEmpty()) {
-        } else {
-            if (textEmail.getText().contains("@") && textEmail.getText().contains(".")) {
-                errorEmail.setText("");
-            } else {
-                errorEmail.setText("Email tidak valid");
-                valid = false;
-            }
-        }
-        if (!valid) {
-            throw new SpatoBizException("Data karyawan belum lengkap");
-        }
-
-        Karyawan karyawan = new Karyawan();
-        karyawan.setAlamat(textAlamat.getText());
-        karyawan.setEmail(textEmail.getText());
-        if (radioPria.isSelected()) {
-            karyawan.setJenisKelamin(JenisKelamin.Pria);
-        } else {
-            karyawan.setJenisKelamin(JenisKelamin.Wanita);
-        }
-        karyawan.setKode(textKode.getText());
-        karyawan.setNama(textNama.getText());
-        karyawan.setPhoto(imageChooser.getImage());
-        karyawan.setTanggalLahir((Date) textTanggalLahir.getValue());
-        karyawan.setTelepon(textTelepon.getText());
 
         return karyawan;
     }
 
+    public void setKaryawan(Karyawan karyawan) {
+        this.karyawan = karyawan;
+        textAlamat.setText(karyawan.getAlamat());
+        textEmail.setText(karyawan.getEmail());
+        textKode.setText(karyawan.getKode());
+        textNama.setText(karyawan.getNama());
+        textTanggalLahir.setValue(karyawan.getTanggalLahir());
+        textTelepon.setText(karyawan.getTelepon());
+        if (karyawan.getJenisKelamin() == JenisKelamin.Pria) {
+            radioPria.setSelected(true);
+        } else {
+            radioWanita.setSelected(true);
+        }
+        imageChooser.setImage(karyawan.getPhoto());
+    }
+
     @Override
     public void onOpen() throws Exception {
-        errorAlamat.setText("Alamat tidak boleh kosong");
-        errorEmail.setText("");
-        errorKode.setText("Kode tidak boleh kosong");
-        errorNama.setText("Nama tidak boleh kosong");
-        errorTanggalLahir.setText("");
-        errorTelepon.setText("");
-
         textAlamat.setText("");
         textEmail.setText("");
         textKode.setText("");
@@ -148,6 +107,42 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         textTelepon.setText("");
 
         imageChooser.setImage(null);
+
+        if (karyawan != null) {
+            karyawan.setId(null);
+        }
+    }
+
+    public JRadioButton getRadioPria() {
+        return radioPria;
+    }
+
+    public JRadioButton getRadioWanita() {
+        return radioWanita;
+    }
+
+    public WhiteTextArea getTextAlamat() {
+        return textAlamat;
+    }
+
+    public TextBoxTransfer getTextEmail() {
+        return textEmail;
+    }
+
+    public TextBoxTransfer getTextKode() {
+        return textKode;
+    }
+
+    public TextBoxTransfer getTextNama() {
+        return textNama;
+    }
+
+    public DateBox getTextTanggalLahir() {
+        return textTanggalLahir;
+    }
+
+    public TextBoxTransfer getTextTelepon() {
+        return textTelepon;
     }
 
     /** This method is called from within the constructor to
@@ -168,10 +163,6 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         textNama = new TextBoxTransfer();
         textTanggalLahir = new DateBox();
         textAlamat = new WhiteTextArea();
-        errorKode = new RedLabel();
-        errorNama = new RedLabel();
-        errorTanggalLahir = new RedLabel();
-        errorAlamat = new RedLabel();
         textTelepon = new TextBoxTransfer();
         labelTelepon = new WhiteLabel();
         labelEmail = new WhiteLabel();
@@ -180,11 +171,10 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         textEmail = new TextBoxTransfer();
         radioPria = new JRadioButton();
         radioWanita = new JRadioButton();
-        errorTelepon = new RedLabel();
-        errorEmail = new RedLabel();
         imageChooser = new ImageChooser();
         buttonBatal = new Button();
-        buttonTambah = new Button();
+        buttonUbah = new Button();
+        buttonCari = new Button();
 
         setBackground(new Color(0, 0, 0));
 
@@ -200,17 +190,16 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         labelAlamat.setHorizontalAlignment(SwingConstants.RIGHT);
         labelAlamat.setText("Alamat :");
 
+        textNama.setEnabled(false);
+
+        textTanggalLahir.setEnabled(false);
         textTanggalLahir.setFormatterFactory(new DefaultFormatterFactory(new DateFormatter(DateFormat.getDateInstance(DateFormat.LONG))));
         textTanggalLahir.setPreferredSize(new Dimension(120, 24));
         textTanggalLahir.setValue(new Date());
 
-        errorKode.setText("error kode");
+        textAlamat.setEnabled(false);
 
-        errorNama.setText("error nama");
-
-        errorTanggalLahir.setText("error tanggal lahir");
-
-        errorAlamat.setText("error alamat");
+        textTelepon.setEnabled(false);
 
         labelTelepon.setHorizontalAlignment(SwingConstants.RIGHT);
         labelTelepon.setText("Telepon :");
@@ -224,37 +213,45 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
         labelPhoto.setHorizontalAlignment(SwingConstants.RIGHT);
         labelPhoto.setText("Photo :");
 
+        textEmail.setEnabled(false);
+
         jeniskelamin.add(radioPria);
-        radioPria.setFont(new Font("Tahoma", 1, 11)); // NOI18N
+        radioPria.setFont(new Font("Tahoma", 1, 11));
         radioPria.setForeground(new Color(255, 255, 255));
         radioPria.setSelected(true);
         radioPria.setText("Pria");
+        radioPria.setEnabled(false);
         radioPria.setOpaque(false);
 
         jeniskelamin.add(radioWanita);
         radioWanita.setFont(new Font("Tahoma", 1, 11));
         radioWanita.setForeground(new Color(255, 255, 255));
         radioWanita.setText("Wanita");
+        radioWanita.setEnabled(false);
         radioWanita.setOpaque(false);
 
-        errorTelepon.setText("error telepon");
-
-        errorEmail.setText("error email");
+        imageChooser.setEnabled(false);
 
         buttonBatal.setMnemonic('B');
         buttonBatal.setText("Batal");
 
-        buttonTambah.setMnemonic('T');
-        buttonTambah.setText("Tambah");
+        buttonUbah.setMnemonic('H');
+        buttonUbah.setText("Hapus");
+
+        buttonCari.setText("Cari");
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                    .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(buttonUbah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(ComponentPlacement.RELATED)
+                        .addComponent(buttonBatal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(Alignment.TRAILING, false)
                                 .addComponent(labelPhoto, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -268,29 +265,20 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
                                 .addComponent(labelKode, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(Alignment.TRAILING)
-                            .addComponent(textAlamat, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
-                            .addComponent(textNama, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
-                            .addComponent(textTanggalLahir, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
-                            .addComponent(textKode, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
-                            .addComponent(textTelepon, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                            .addComponent(textAlamat, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textNama, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                            .addComponent(textTanggalLahir, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                            .addComponent(textTelepon, GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
                             .addGroup(Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(radioPria)
                                 .addPreferredGap(ComponentPlacement.UNRELATED)
                                 .addComponent(radioWanita))
                             .addComponent(imageChooser, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE))
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(Alignment.LEADING)
-                            .addComponent(errorKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errorNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errorTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errorAlamat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errorTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(errorEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonTambah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(ComponentPlacement.RELATED)
-                        .addComponent(buttonBatal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textEmail, GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(textKode, GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                                .addPreferredGap(ComponentPlacement.UNRELATED)
+                                .addComponent(buttonCari, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -300,32 +288,27 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(labelKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addComponent(textKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorKode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonCari, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(labelNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textNama, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(labelTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textTanggalLahir, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.LEADING)
                     .addComponent(labelAlamat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textAlamat, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorAlamat, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textAlamat, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(textTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelTelepon, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(labelEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(labelJenisKelamin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -338,7 +321,7 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
                 .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(buttonBatal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonTambah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonUbah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -348,17 +331,12 @@ public class TambahKaryawan extends Panel implements ApplicationContextAware, In
     }
 
     public void afterPropertiesSet() throws Exception {
-        setTitle(applicationContext.getMessage("tambahkaryawan.title", null, Locale.getDefault()));
+        setTitle(applicationContext.getMessage("hapuskaryawan.title", null, Locale.getDefault()));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected Button buttonBatal;
-    protected Button buttonTambah;
-    protected RedLabel errorAlamat;
-    protected RedLabel errorEmail;
-    protected RedLabel errorKode;
-    protected RedLabel errorNama;
-    protected RedLabel errorTanggalLahir;
-    protected RedLabel errorTelepon;
+    protected Button buttonCari;
+    protected Button buttonUbah;
     protected ImageChooser imageChooser;
     protected ButtonGroup jeniskelamin;
     protected WhiteLabel labelAlamat;

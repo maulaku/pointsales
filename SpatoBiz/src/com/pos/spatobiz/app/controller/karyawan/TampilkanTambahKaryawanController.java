@@ -25,7 +25,7 @@ import java.awt.event.ActionListener;
  *
  * @author echo
  */
-public class TampilkanTambahKaryawanAction implements ActionListener {
+public class TampilkanTambahKaryawanController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         Application application = DesktopManager.getApplication();
