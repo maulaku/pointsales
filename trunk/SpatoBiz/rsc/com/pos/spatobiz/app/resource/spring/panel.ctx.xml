@@ -6,67 +6,13 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
     
     <context:annotation-config/>
+    <import resource="panel/karyawan.ctx.xml"/>
+    <import resource="panel/pelanggan.xml"/>
+    <import resource="panel/pemasok.xml"/>
     
     <bean class="com.pos.spatobiz.app.view.desktop.GambarAbstract" id="gambarAbstract">
         <property name="home" value="true"/>
         <property name="uniqueName" value="gambarAbstract"/>
-    </bean>
-
-    <bean class="com.pos.spatobiz.app.view.karyawan.MenuKaryawan" id="menuKaryawan">
-        <property name="uniqueName" value="menuKaryawan"/>
-        <property name="tampilkanTambahKaryawanAction">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanController"/>
-        </property>
-        <property name="tampilkanUbahKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanUbahKaryawanController"/>
-        </property>
-        <property name="tampilkanHapusKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanHapusKaryawanController"/>
-        </property>
-        <property name="tampilkanDataKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanDataKaryawanController"/>
-        </property>
-    </bean>
-
-    <bean class="com.pos.spatobiz.app.view.karyawan.DataKaryawan" id="dataKaryawan">
-        <property name="uniqueName" value="dataKaryawan"/>
-        
-    </bean>
-
-    <bean class="com.pos.spatobiz.app.view.karyawan.TambahKaryawan" id="tambahKaryawan">
-        <property name="uniqueName" value="tambahKaryawan"/>
-        <property name="tambahKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.TambahKaryawanController"/>
-        </property>
-        <property name="batalTambahKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.BatalTambahKaryawanController"/>
-        </property>
-    </bean>
-
-    <bean class="com.pos.spatobiz.app.view.karyawan.UbahKaryawan" id="ubahKaryawan">
-        <property name="uniqueName" value="ubahKaryawan"/>
-        <property name="cariUbahKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.CariUbahKaryawanController"/>
-        </property>
-        <property name="batalUbahKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.BatalUbahKaryawanController"/>
-        </property>
-        <property name="ubahKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.UbahKaryawanController"/>
-        </property>
-    </bean>
-
-    <bean class="com.pos.spatobiz.app.view.karyawan.HapusKaryawan" id="hapusKaryawan">
-        <property name="uniqueName" value="hapusKaryawan"/>
-        <property name="cariHapusKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.CariHapusKaryawanController"/>
-        </property>
-        <property name="hapusKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.HapusKaryawanController"/>
-        </property>
-        <property name="batalHapusKaryawanController">
-            <bean class="com.pos.spatobiz.app.controller.karyawan.BatalHapusKaryawanController"/>
-        </property>
     </bean>
 
 </beans>
