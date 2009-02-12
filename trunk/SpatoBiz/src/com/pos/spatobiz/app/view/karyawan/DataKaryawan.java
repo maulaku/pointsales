@@ -16,6 +16,7 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
+import com.pos.spatobiz.app.controller.karyawan.SaringDataKaryawan;
 import com.pos.spatobiz.app.model.karyawan.TableModelKaryawan;
 import com.pos.spatobiz.app.util.SpringUtilities;
 import com.pos.spatobiz.app.view.widget.Table;
@@ -47,6 +48,8 @@ public class DataKaryawan extends Panel implements ApplicationContextAware, Init
 
     private TableModelKaryawan tableModelKaryawan;
 
+    private SaringDataKaryawan saringDataKaryawan;
+
     /** Creates new form DataKaryawan */
     public DataKaryawan() {
         tableModelKaryawan = new TableModelKaryawan();
@@ -55,8 +58,17 @@ public class DataKaryawan extends Panel implements ApplicationContextAware, Init
         table.getTable().setModel(tableModelKaryawan);
     }
 
+    public void setSaringDataKaryawan(SaringDataKaryawan saringDataKaryawan) {
+        this.saringDataKaryawan = saringDataKaryawan;
+        textSaring.getDocument().addDocumentListener(saringDataKaryawan);
+    }
+
     public TableModelKaryawan getTableModelKaryawan() {
         return tableModelKaryawan;
+    }
+
+    public Table getTable() {
+        return table;
     }
 
     @Override

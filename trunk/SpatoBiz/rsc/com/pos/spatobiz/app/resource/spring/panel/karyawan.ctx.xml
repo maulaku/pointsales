@@ -21,7 +21,9 @@
 
     <bean class="com.pos.spatobiz.app.view.karyawan.DataKaryawan" id="dataKaryawan">
         <property name="uniqueName" value="dataKaryawan"/>
-        
+        <property name="saringDataKaryawan">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.SaringDataKaryawan"/>
+        </property>
     </bean>
 
     <bean class="com.pos.spatobiz.app.view.karyawan.TambahKaryawan" id="tambahKaryawan">
