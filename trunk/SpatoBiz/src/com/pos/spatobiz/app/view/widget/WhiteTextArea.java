@@ -16,8 +16,11 @@
  */
 package com.pos.spatobiz.app.view.widget;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
@@ -32,7 +35,21 @@ public class WhiteTextArea extends ScrollPane {
     private JTextArea textArea;
 
     public WhiteTextArea() {
-        textArea = new JTextArea();
+        textArea = new JTextArea() {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                if (!textArea.isEnabled()) {
+                    Graphics2D gd = (Graphics2D) g.create();
+                    gd.setColor(Color.WHITE);
+                    gd.setComposite(AlphaComposite.SrcOver.derive(0.5F));
+                    gd.fillRect(0, 0, getWidth(), getHeight());
+                }
+                super.paintComponent(g);
+            }
+        };
         textArea.setOpaque(false);
         textArea.setForeground(Color.WHITE);
         textArea.setFont(textArea.getFont().deriveFont(Font.BOLD).deriveFont(12F));
@@ -48,5 +65,12 @@ public class WhiteTextArea extends ScrollPane {
 
     public String getText() {
         return textArea.getText();
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        textArea.setEnabled(enabled);
+        textArea.repaint();
     }
 }

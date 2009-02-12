@@ -25,9 +25,14 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="buttonUbah" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonBatal" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
@@ -45,36 +50,26 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="textAlamat" alignment="0" pref="403" max="32767" attributes="0"/>
-                          <Component id="textNama" alignment="0" pref="403" max="32767" attributes="2"/>
-                          <Component id="textTanggalLahir" alignment="0" pref="403" max="32767" attributes="2"/>
-                          <Component id="textKode" alignment="0" pref="403" max="32767" attributes="2"/>
-                          <Component id="textTelepon" alignment="1" pref="403" max="32767" attributes="0"/>
+                          <Component id="textAlamat" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textNama" alignment="0" pref="552" max="32767" attributes="2"/>
+                          <Component id="textTanggalLahir" alignment="0" pref="552" max="32767" attributes="2"/>
+                          <Component id="textTelepon" alignment="1" pref="552" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="radioPria" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="radioWanita" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="imageChooser" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                          <Component id="textEmail" alignment="1" pref="403" max="32767" attributes="0"/>
+                          <Component id="textEmail" alignment="1" pref="552" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="textKode" pref="488" max="32767" attributes="2"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="buttonCari" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="errorKode" min="-2" max="-2" attributes="0"/>
-                          <Component id="errorNama" min="-2" max="-2" attributes="0"/>
-                          <Component id="errorTanggalLahir" min="-2" max="-2" attributes="0"/>
-                          <Component id="errorAlamat" min="-2" max="-2" attributes="0"/>
-                          <Component id="errorTelepon" min="-2" max="-2" attributes="0"/>
-                          <Component id="errorEmail" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="buttonTambah" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="buttonBatal" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,37 +80,32 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelKode" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textKode" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorKode" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonCari" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelNama" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textNama" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorNama" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelTanggalLahir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textTanggalLahir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorTanggalLahir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="labelAlamat" min="-2" max="-2" attributes="0"/>
                   <Component id="textAlamat" min="-2" pref="88" max="-2" attributes="0"/>
-                  <Component id="errorAlamat" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="textTelepon" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="labelTelepon" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorTelepon" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="textEmail" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="errorEmail" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -131,7 +121,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonBatal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonTambah" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonUbah" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -166,9 +156,13 @@
     <Component class="com.pos.spatobiz.app.view.widget.TextBoxTransfer" name="textKode">
     </Component>
     <Component class="com.pos.spatobiz.app.view.widget.TextBoxTransfer" name="textNama">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="com.pos.spatobiz.app.view.widget.DateBox" name="textTanggalLahir">
       <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
           <Format subtype="3" type="1"/>
         </Property>
@@ -181,28 +175,14 @@
       </Properties>
     </Component>
     <Component class="com.pos.spatobiz.app.view.widget.WhiteTextArea" name="textAlamat">
-    </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.RedLabel" name="errorKode">
       <Properties>
-        <Property name="text" type="java.lang.String" value="error kode"/>
-      </Properties>
-    </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.RedLabel" name="errorNama">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="error nama"/>
-      </Properties>
-    </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.RedLabel" name="errorTanggalLahir">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="error tanggal lahir"/>
-      </Properties>
-    </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.RedLabel" name="errorAlamat">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="error alamat"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="com.pos.spatobiz.app.view.widget.TextBoxTransfer" name="textTelepon">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="com.pos.spatobiz.app.view.widget.WhiteLabel" name="labelTelepon">
       <Properties>
@@ -229,6 +209,9 @@
       </Properties>
     </Component>
     <Component class="com.pos.spatobiz.app.view.widget.TextBoxTransfer" name="textEmail">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioPria">
       <Properties>
@@ -243,6 +226,7 @@
         </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Pria"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
     </Component>
@@ -258,20 +242,14 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Wanita"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.RedLabel" name="errorTelepon">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="error telepon"/>
-      </Properties>
-    </Component>
-    <Component class="com.pos.spatobiz.app.view.widget.RedLabel" name="errorEmail">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="error email"/>
-      </Properties>
-    </Component>
     <Component class="com.pos.spatobiz.app.view.widget.ImageChooser" name="imageChooser">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="echo.gokil.desktop.swing.Button" name="buttonBatal">
       <Properties>
@@ -279,10 +257,15 @@
         <Property name="text" type="java.lang.String" value="Batal"/>
       </Properties>
     </Component>
-    <Component class="echo.gokil.desktop.swing.Button" name="buttonTambah">
+    <Component class="echo.gokil.desktop.swing.Button" name="buttonUbah">
       <Properties>
-        <Property name="mnemonic" type="int" value="84"/>
-        <Property name="text" type="java.lang.String" value="Tambah"/>
+        <Property name="mnemonic" type="int" value="72"/>
+        <Property name="text" type="java.lang.String" value="Hapus"/>
+      </Properties>
+    </Component>
+    <Component class="echo.gokil.desktop.swing.Button" name="buttonCari">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cari"/>
       </Properties>
     </Component>
   </SubComponents>

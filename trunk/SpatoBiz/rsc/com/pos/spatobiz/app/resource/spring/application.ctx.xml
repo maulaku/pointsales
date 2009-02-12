@@ -13,6 +13,8 @@
                 <ref bean="gambarAbstract"/>
                 <ref bean="menuKaryawan"/>
                 <ref bean="tambahKaryawan"/>
+                <ref bean="ubahKaryawan"/>
+                <ref bean="hapusKaryawan"/>
             </list>
         </property>
 

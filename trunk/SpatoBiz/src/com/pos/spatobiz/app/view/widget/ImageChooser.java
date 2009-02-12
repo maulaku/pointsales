@@ -64,6 +64,12 @@ public class ImageChooser extends javax.swing.JPanel implements ActionListener {
         this.image = object;
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        buttonOpen.setEnabled(enabled);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

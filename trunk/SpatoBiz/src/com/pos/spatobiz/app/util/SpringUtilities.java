@@ -37,15 +37,15 @@ public class SpringUtilities {
         return applicationContext;
     }
 
-    public KaryawanDao getKaryawanDao() {
+    public static KaryawanDao getKaryawanDao() {
         return (KaryawanDao) getApplicationContext().getBean("karyawanDao");
     }
 
-    public PelangganDao getPelangganDao() {
+    public static PelangganDao getPelangganDao() {
         return (PelangganDao) getApplicationContext().getBean("pelangganDao");
     }
 
-    public PemasokDao getPemasokDao() {
+    public static PemasokDao getPemasokDao() {
         return (PemasokDao) getApplicationContext().getBean("pemasokDao");
     }
 }

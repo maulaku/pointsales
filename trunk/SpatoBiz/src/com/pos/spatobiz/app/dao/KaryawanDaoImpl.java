@@ -93,4 +93,18 @@ public class KaryawanDaoImpl extends HibernateDaoSupport implements KaryawanDao 
             throw new SpatoBizException(t.getMessage());
         }
     }
+
+    @Transactional(readOnly = true)
+    public Karyawan getKaryawan(final String kode) throws SpatoBizException {
+        try {
+            return (Karyawan) getHibernateTemplate().execute(new HibernateCallback() {
+
+                public Object doInHibernate(Session session) throws HibernateException, SQLException {
+                    return session.getNamedQuery("Karyawan.getByKode").setParameter("kode", kode).setMaxResults(1).uniqueResult();
+                }
+            });
+        } catch (Throwable t) {
+            throw new SpatoBizException(t.getMessage());
+        }
+    }
 }
