@@ -2,5 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-    
+    <bean class="com.pos.spatobiz.app.view.pemasok.MenuPemasok" id="menuPemasok">
+        <property name="uniqueName" value="menuPemasok"/>
+        <property name="tampilkanTambahPemasokAction">
+            <bean class="com.pos.spatobiz.app.controller.pemasok.TampilkanTambahPemasokAction"/>
+        </property>
+    </bean>
+    <bean class="com.pos.spatobiz.app.view.pemasok.TambahPemasok" id="tambahPemasok">
+        <property name="uniqueName" value="tambahPemasok"/>
+        <property name="tambahPemasokController">
+            <bean class="com.pos.spatobiz.app.controller.pemasok.TambahPemasokController"/>
+        </property>
+    </bean>
 </beans>
