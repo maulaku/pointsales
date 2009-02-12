@@ -11,14 +11,10 @@
 
 package com.pos.spatobiz.app.view.pemasok;
 
-import com.pos.spatobiz.app.controller.karyawan.TambahKaryawanController;
 import com.pos.spatobiz.app.controller.pemasok.TambahPemasokController;
-import com.pos.spatobiz.common.entity.JenisKelamin;
-import com.pos.spatobiz.common.entity.Karyawan;
 import com.pos.spatobiz.common.entity.Pemasok;
 import com.pos.spatobiz.common.error.SpatoBizException;
 import echo.gokil.desktop.swing.Panel;
-import java.util.Date;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
