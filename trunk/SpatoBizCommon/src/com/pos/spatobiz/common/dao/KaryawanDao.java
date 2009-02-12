@@ -36,5 +36,7 @@ public interface KaryawanDao {
 
     public Karyawan getKaryawan(Long id) throws SpatoBizException;
 
+    public Karyawan getKaryawan(String kode) throws SpatoBizException;
+
     public List<Karyawan> selectKaryawan() throws SpatoBizException;
 }
