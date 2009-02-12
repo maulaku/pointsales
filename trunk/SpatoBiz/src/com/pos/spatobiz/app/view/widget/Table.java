@@ -16,35 +16,26 @@
  */
 package com.pos.spatobiz.app.view.widget;
 
-import echo.gokil.desktop.swing.TextBox;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import javax.swing.JTable;
 
 /**
  *
  * @author echo
  */
-public class TextBoxTransfer extends TextBox implements ActionListener, FocusListener {
+public class Table extends ScrollPane {
 
     private static final long serialVersionUID = 1L;
 
-    public TextBoxTransfer() {
-        addActionListener(this);
-        addFocusListener(this);
-        setCaretColor(Color.white);
+    private JTable table;
+
+    public Table() {
+        table = new JTable();
+        table.setOpaque(true);
+        table.setAutoCreateRowSorter(true);
+        setViewportView(table);
     }
 
-    public void actionPerformed(ActionEvent e) {
-        transferFocus();
-    }
-
-    public void focusGained(FocusEvent e) {
-        selectAll();
-    }
-
-    public void focusLost(FocusEvent e) {
+    public JTable getTable() {
+        return table;
     }
 }

@@ -14,37 +14,19 @@
  *  limitations under the License.
  *  under the License.
  */
-package com.pos.spatobiz.app.view.widget;
+package com.pos.spatobiz.app.controller.karyawan;
 
-import echo.gokil.desktop.swing.TextBox;
-import java.awt.Color;
+import echo.gokil.desktop.util.DesktopManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 /**
  *
  * @author echo
  */
-public class TextBoxTransfer extends TextBox implements ActionListener, FocusListener {
-
-    private static final long serialVersionUID = 1L;
-
-    public TextBoxTransfer() {
-        addActionListener(this);
-        addFocusListener(this);
-        setCaretColor(Color.white);
-    }
+public class TampilkanDataKaryawanController implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
-        transferFocus();
-    }
-
-    public void focusGained(FocusEvent e) {
-        selectAll();
-    }
-
-    public void focusLost(FocusEvent e) {
+        DesktopManager.getApplication().showChildPane("dataKaryawan");
     }
 }

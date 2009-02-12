@@ -35,6 +35,12 @@ public class TableModelKaryawan extends AbstractTableModel {
         setKaryawans(new ArrayList<Karyawan>());
     }
 
+    public void addKaryawan(List<Karyawan> list) {
+        int index = getRowCount();
+        getKaryawans().addAll(list);
+        fireTableRowsInserted(index, getRowCount());
+    }
+
     public List<Karyawan> getKaryawans() {
         return karyawans;
     }
@@ -53,6 +59,13 @@ public class TableModelKaryawan extends AbstractTableModel {
     public void removeKaryawan(int index) {
         getKaryawans().remove(index);
         fireTableRowsDeleted(index, index);
+    }
+
+    public void removeAll() {
+        while (getKaryawans().size() > 0) {
+            getKaryawans().remove(0);
+        }
+        fireTableDataChanged();
     }
 
     public void editKaryawan(Karyawan karyawan, int index) {
