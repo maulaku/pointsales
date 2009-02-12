@@ -7,6 +7,9 @@
         <property name="basenames">
             <list>
                 <value>com.pos.spatobiz.app.resource.i18n.application</value>
+                <value>com.pos.spatobiz.app.resource.i18n.karyawan</value>
+                <value>com.pos.spatobiz.app.resource.i18n.pemasok</value>
+                <value>com.pos.spatobiz.app.resource.i18n.pelanggan</value>
                 <value>com.pos.spatobiz.app.resource.i18n.error</value>
             </list>
         </property>
