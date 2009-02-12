@@ -29,7 +29,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="buttonUbah" min="-2" max="-2" attributes="0"/>
+                      <Component id="buttonHapus" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonBatal" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -121,7 +121,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="buttonBatal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="buttonUbah" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonHapus" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -257,7 +257,7 @@
         <Property name="text" type="java.lang.String" value="Batal"/>
       </Properties>
     </Component>
-    <Component class="echo.gokil.desktop.swing.Button" name="buttonUbah">
+    <Component class="echo.gokil.desktop.swing.Button" name="buttonHapus">
       <Properties>
         <Property name="mnemonic" type="int" value="72"/>
         <Property name="text" type="java.lang.String" value="Hapus"/>
