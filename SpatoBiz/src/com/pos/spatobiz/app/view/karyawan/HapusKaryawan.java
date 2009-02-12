@@ -16,7 +16,9 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
+import com.pos.spatobiz.app.controller.karyawan.BatalHapusKaryawanController;
 import com.pos.spatobiz.app.controller.karyawan.CariHapusKaryawanController;
+import com.pos.spatobiz.app.controller.karyawan.HapusKaryawanController;
 import com.pos.spatobiz.app.view.widget.DateBox;
 import com.pos.spatobiz.app.view.widget.ImageChooser;
 import com.pos.spatobiz.app.view.widget.TextBoxTransfer;
@@ -60,14 +62,28 @@ public class HapusKaryawan extends Panel implements ApplicationContextAware, Ini
 
     private CariHapusKaryawanController cariHapusKaryawanController;
 
+    private HapusKaryawanController hapusKaryawanController;
+
+    private BatalHapusKaryawanController batalHapusKaryawanController;
+
     /** Creates new form TambahKaryawan */
     public HapusKaryawan() {
         initComponents();
     }
 
+    public void setHapusKaryawanController(HapusKaryawanController hapusKaryawanController) {
+        this.hapusKaryawanController = hapusKaryawanController;
+        buttonHapus.addActionListener(hapusKaryawanController);
+    }
+
     public void setCariHapusKaryawanController(CariHapusKaryawanController cariHapusKaryawanController) {
         this.cariHapusKaryawanController = cariHapusKaryawanController;
         buttonCari.addActionListener(cariHapusKaryawanController);
+    }
+
+    public void setBatalHapusKaryawanController(BatalHapusKaryawanController batalHapusKaryawanController) {
+        this.batalHapusKaryawanController = batalHapusKaryawanController;
+        buttonBatal.addActionListener(batalHapusKaryawanController);
     }
 
     public Karyawan getKaryawan() throws SpatoBizException {
@@ -173,7 +189,7 @@ public class HapusKaryawan extends Panel implements ApplicationContextAware, Ini
         radioWanita = new JRadioButton();
         imageChooser = new ImageChooser();
         buttonBatal = new Button();
-        buttonUbah = new Button();
+        buttonHapus = new Button();
         buttonCari = new Button();
 
         setBackground(new Color(0, 0, 0));
@@ -235,8 +251,8 @@ public class HapusKaryawan extends Panel implements ApplicationContextAware, Ini
         buttonBatal.setMnemonic('B');
         buttonBatal.setText("Batal");
 
-        buttonUbah.setMnemonic('H');
-        buttonUbah.setText("Hapus");
+        buttonHapus.setMnemonic('H');
+        buttonHapus.setText("Hapus");
 
         buttonCari.setText("Cari");
 
@@ -248,7 +264,7 @@ public class HapusKaryawan extends Panel implements ApplicationContextAware, Ini
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(buttonUbah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buttonHapus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(ComponentPlacement.RELATED)
                         .addComponent(buttonBatal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -321,7 +337,7 @@ public class HapusKaryawan extends Panel implements ApplicationContextAware, Ini
                 .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(Alignment.BASELINE)
                     .addComponent(buttonBatal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonUbah, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buttonHapus, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -336,7 +352,7 @@ public class HapusKaryawan extends Panel implements ApplicationContextAware, Ini
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected Button buttonBatal;
     protected Button buttonCari;
-    protected Button buttonUbah;
+    protected Button buttonHapus;
     protected ImageChooser imageChooser;
     protected ButtonGroup jeniskelamin;
     protected WhiteLabel labelAlamat;

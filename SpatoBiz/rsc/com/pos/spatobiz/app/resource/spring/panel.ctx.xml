@@ -53,6 +53,12 @@
         <property name="cariHapusKaryawanController">
             <bean class="com.pos.spatobiz.app.controller.karyawan.CariHapusKaryawanController"/>
         </property>
+        <property name="hapusKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.HapusKaryawanController"/>
+        </property>
+        <property name="batalHapusKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.BatalHapusKaryawanController"/>
+        </property>
     </bean>
 
 </beans>
