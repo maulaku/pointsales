@@ -23,6 +23,14 @@
         <property name="tampilkanHapusKaryawanController">
             <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanHapusKaryawanController"/>
         </property>
+        <property name="tampilkanDataKaryawanController">
+            <bean class="com.pos.spatobiz.app.controller.karyawan.TampilkanDataKaryawanController"/>
+        </property>
+    </bean>
+
+    <bean class="com.pos.spatobiz.app.view.karyawan.DataKaryawan" id="dataKaryawan">
+        <property name="uniqueName" value="dataKaryawan"/>
+        
     </bean>
 
     <bean class="com.pos.spatobiz.app.view.karyawan.TambahKaryawan" id="tambahKaryawan">

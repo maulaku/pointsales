@@ -16,6 +16,7 @@
  */
 package com.pos.spatobiz.app.view.karyawan;
 
+import com.pos.spatobiz.app.controller.karyawan.TampilkanDataKaryawanController;
 import com.pos.spatobiz.app.controller.karyawan.TampilkanHapusKaryawanController;
 import com.pos.spatobiz.app.controller.karyawan.TampilkanTambahKaryawanController;
 import com.pos.spatobiz.app.controller.karyawan.TampilkanUbahKaryawanController;
@@ -46,9 +47,16 @@ public class MenuKaryawan extends Panel implements ApplicationContextAware, Init
 
     private TampilkanHapusKaryawanController tampilkanHapusKaryawanController;
 
+    private TampilkanDataKaryawanController tampilkanDataKaryawanController;
+
     /** Creates new form MenuKaryawan */
     public MenuKaryawan() {
         initComponents();
+    }
+
+    public void setTampilkanDataKaryawanController(TampilkanDataKaryawanController tampilkanDataKaryawanController) {
+        this.tampilkanDataKaryawanController = tampilkanDataKaryawanController;
+        buttonDataKaryawan.addActionListener(tampilkanDataKaryawanController);
     }
 
     public void setTampilkanHapusKaryawanController(TampilkanHapusKaryawanController tampilkanHapusKaryawanController) {

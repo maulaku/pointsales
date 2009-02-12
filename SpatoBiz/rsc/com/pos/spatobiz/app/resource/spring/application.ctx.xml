@@ -12,6 +12,7 @@
             <list value-type="echo.gokil.desktop.swing.Panel">
                 <ref bean="gambarAbstract"/>
                 <ref bean="menuKaryawan"/>
+                <ref bean="dataKaryawan"/>
                 <ref bean="tambahKaryawan"/>
                 <ref bean="ubahKaryawan"/>
                 <ref bean="hapusKaryawan"/>
