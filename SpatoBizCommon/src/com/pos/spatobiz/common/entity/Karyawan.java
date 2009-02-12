@@ -49,7 +49,8 @@ import org.hibernate.search.annotations.Store;
 @Entity
 @Table(name = "tabel_karyawan")
 @NamedQueries({
-    @NamedQuery(name = "Karyawan.getById", query = "select a from Karyawan a where a.id = :id")
+    @NamedQuery(name = "Karyawan.getById", query = "select a from Karyawan a where a.id = :id"),
+    @NamedQuery(name = "Karyawan.getByKode", query = "select a from Karyawan a where a.kode = :kode")
 })
 @Indexed(index = "karyawan")
 public class Karyawan implements Serializable {
